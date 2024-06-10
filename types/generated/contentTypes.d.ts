@@ -861,6 +861,52 @@ export interface ApiPostPost extends Schema.CollectionType {
   };
 }
 
+export interface ApiUserDataUserData extends Schema.CollectionType {
+  collectionName: 'users_data';
+  info: {
+    singularName: 'user-data';
+    pluralName: 'users-data';
+    displayName: 'UserData';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    lastname: Attribute.String;
+    birthday: Attribute.Date;
+    sex: Attribute.String;
+    country: Attribute.String;
+    state: Attribute.String;
+    city: Attribute.String;
+    address: Attribute.String;
+    team: Attribute.String;
+    allergies: Attribute.String;
+    bloodtype: Attribute.String;
+    medicine: Attribute.String;
+    phonenumber: Attribute.String;
+    emergencycontactname: Attribute.String;
+    emergencyContactNumber: Attribute.String;
+    email: Attribute.Email;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::user-data.user-data',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::user-data.user-data',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -882,6 +928,7 @@ declare module '@strapi/types' {
       'api::curso.curso': ApiCursoCurso;
       'api::guitarra.guitarra': ApiGuitarraGuitarra;
       'api::post.post': ApiPostPost;
+      'api::user-data.user-data': ApiUserDataUserData;
     }
   }
 }
